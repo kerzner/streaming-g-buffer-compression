@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="App.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="DXUT\Core\DXUT.cpp">
+      <Filter>DXUT</Filter>
+    </ClCompile>
+    <ClCompile Include="DXUT\Optional\DXUTcamera.cpp">
+      <Filter>DXUT</Filter>
+    </ClCompile>
+    <ClCompile Include="DXUT\Core\DXUTDevice11.cpp">
+      <Filter>DXUT</Filter>
+    </ClCompile>
+    <ClCompile Include="DXUT\Core\DXUTDevice9.cpp">
+      <Filter>DXUT</Filter>
+    </ClCompile>
+    <ClCompile Include="DXUT\Optional\DXUTgui.cpp">
+      <Filter>DXUT</Filter>
+    </ClCompile>
+    <ClCompile Include="DXUT\Core\DXUTmisc.cpp">
+      <Filter>DXUT</Filter>
+    </ClCompile>
+    <ClCompile Include="DXUT\Optional\DXUTres.cpp">
+      <Filter>DXUT</Filter>
+    </ClCompile>
+    <ClCompile Include="DXUT\Optional\DXUTsettingsdlg.cpp">
+      <Filter>DXUT</Filter>
+    </ClCompile>
+    <ClCompile Include="DXUT\Optional\SDKmesh.cpp">
+      <Filter>DXUT</Filter>
+    </ClCompile>
+    <ClCompile Include="DXUT\Optional\SDKmisc.cpp">
+      <Filter>DXUT</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorUtil.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture2D.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraPath.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="App.h" />
+    <ClInclude Include="DXUT\Core\DXUT.h">
+      <Filter>DXUT</Filter>
+    </ClInclude>
+    <ClInclude Include="DXUT\Optional\DXUTcamera.h">
+      <Filter>DXUT</Filter>
+    </ClInclude>
+    <ClInclude Include="DXUT\Core\DXUTDevice11.h">
+      <Filter>DXUT</Filter>
+    </ClInclude>
+    <ClInclude Include="DXUT\Core\DXUTDevice9.h">
+      <Filter>DXUT</Filter>
+    </ClInclude>
+    <ClInclude Include="DXUT\Optional\DXUTgui.h">
+      <Filter>DXUT</Filter>
+    </ClInclude>
+    <ClInclude Include="DXUT\Core\DXUTmisc.h">
+      <Filter>DXUT</Filter>
+    </ClInclude>
+    <ClInclude Include="DXUT\Optional\DXUTres.h">
+      <Filter>DXUT</Filter>
+    </ClInclude>
+    <ClInclude Include="DXUT\Optional\DXUTsettingsdlg.h">
+      <Filter>DXUT</Filter>
+    </ClInclude>
+    <ClInclude Include="DXUT\Optional\SDKmesh.h">
+      <Filter>DXUT</Filter>
+    </ClInclude>
+    <ClInclude Include="DXUT\Optional\SDKmisc.h">
+      <Filter>DXUT</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderDefines.h">
+      <Filter>Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorUtil.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture2D.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Buffer.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Shaders\StreamingDefines.h">
+      <Filter>Shaders\StreamingSBAA</Filter>
+    </ClInclude>
+    <ClInclude Include="Shaders\StreamingStructs.h">
+      <Filter>Shaders\StreamingSBAA</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraPath.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="BasicLoop.hlsl">
+      <Filter>Shaders\Lauritzen</Filter>
+    </None>
+    <None Include="ComputeShaderTile.hlsl">
+      <Filter>Shaders\Lauritzen</Filter>
+    </None>
+    <None Include="Forward.hlsl">
+      <Filter>Shaders\Lauritzen</Filter>
+    </None>
+    <None Include="FramebufferFlat.hlsl">
+      <Filter>Shaders\Lauritzen</Filter>
+    </None>
+    <None Include="FullScreenTriangle.hlsl">
+      <Filter>Shaders\Lauritzen</Filter>
+    </None>
+    <None Include="GBuffer.hlsl">
+      <Filter>Shaders\Lauritzen</Filter>
+    </None>
+    <None Include="GPUQuad.hlsl">
+      <Filter>Shaders\Lauritzen</Filter>
+    </None>
+    <None Include="GPUQuadDL.hlsl">
+      <Filter>Shaders\Lauritzen</Filter>
+    </None>
+    <None Include="Rendering.hlsl">
+      <Filter>Shaders\Lauritzen</Filter>
+    </None>
+    <None Include="SkyboxToneMap.hlsl">
+      <Filter>Shaders\Lauritzen</Filter>
+    </None>
+    <None Include="Shaders\StreamingGBuffer.fx">
+      <Filter>Shaders\StreamingSBAA</Filter>
+    </None>
+    <None Include="Shaders\StreamingResolve.fx">
+      <Filter>Shaders\StreamingSBAA</Filter>
+    </None>
+    <None Include="Shaders\IntelExtensions.hlsl">
+      <Filter>Shaders\StreamingSBAA</Filter>
+    </None>
+    <None Include="Shaders\UintByteArray.hlsl">
+      <Filter>Shaders\StreamingSBAA</Filter>
+    </None>
+    <None Include="Shaders\StreamingBuffers.hlsl">
+      <Filter>Shaders\StreamingSBAA</Filter>
+    </None>
+    <None Include="Shaders\SamplePositions.hlsl">
+      <Filter>Shaders\StreamingSBAA</Filter>
+    </None>
+    <None Include="Shaders\DepthTests.hlsl">
+      <Filter>Shaders\StreamingSBAA</Filter>
+    </None>
+    <None Include="Shaders\Debug.hlsl">
+      <Filter>Shaders\StreamingSBAA</Filter>
+    </None>
+    <None Include="Shaders\StreamingSkyboxToneMap.fx">
+      <Filter>Shaders\StreamingSBAA</Filter>
+    </None>
+    <None Include="PerFrameConstants.hlsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\Merge.hlsl">
+      <Filter>Shaders\StreamingSBAA</Filter>
+    </None>
+    <None Include="Shaders\StreamingGBufferNdi.fx">
+      <Filter>Shaders\StreamingSBAA</Filter>
+    </None>
+    <None Include="Shaders\D3DX_DXGIFormatConvert.inl">
+      <Filter>Shaders\StreamingSBAA</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="DXUT">
+      <UniqueIdentifier>{8afa89b9-1c25-4ca2-9095-9881aacb78b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{f754d897-778f-4205-bb61-0452e104645f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{72f50a99-810b-4632-b7cd-c0a9a558a67f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\Lauritzen">
+      <UniqueIdentifier>{5038c2e9-81da-423f-82ed-2bdb32180a79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\StreamingSBAA">
+      <UniqueIdentifier>{0b8c1880-41e8-4755-9171-78481364d128}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,3 @@
+DXUT\Core\*.*
+DXUT\Optional\*.*
+Media\UI\*.*
