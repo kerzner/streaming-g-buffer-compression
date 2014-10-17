@@ -12,6 +12,10 @@ RWTexture2D<uint> gCountTexture : register(u4);
 RWStructuredBuffer<PixelStats> gPixelStats : register(u5);
 #endif // defined(STREAMING_DEBUG_OPTIONS)
 
+#if defined (STREAMING_USE_LIST_TEXTURE)
+RWTexture2D<uint> gListTexture : register(u5);
+#endif // defined(STREAMING_USE_LIST_TEXTURE)
+
 ShadeNode UnpackShadeNode(in ShadeNodePacked packed);
 ShadeNodePacked PackShadeNode(in ShadeNode shade);
 
@@ -248,15 +252,22 @@ void IncrementDiscardCount(in uint2 coords)
 
 uint GetNodeList(uint2 coords)
 {
+#if defined(STREAMING_USE_LIST_TEXTURE)
+    return gListTexture[coords];
+#else // !defined(STREAMING_USE_LIST_TEXTURE)
 #if defined(STREAMING_DEBUG_OPTIONS)
     return gPixelStats[GetNodeCountIndex(coords)].nodeList;
 #else // !defined(STREAMING_DEBUG_OPTIONS)
     return (gCountTexture[coords] & 0xFC) >> 2;
 #endif // !defined(STREAMING_DEBUG_OPTIONS)
+#endif // !defined(STREAMING_LIST_TEXTURE)
 }
 
 void SetNodeList(uint2 coords, in uint nodeList)
 {
+#if defined(STREAMING_USE_LIST_TEXTURE)
+    gListTexture[coords] = nodeList;
+#else // !defined(STREAMING_USE_LIST_TEXTURE)
 #if defined(STREAMING_DEBUG_OPTIONS)
     gPixelStats[GetNodeCountIndex(coords)].nodeList = nodeList;
 #else // !defined(STREAMING_DEBUG_OPTIONS)
@@ -265,6 +276,7 @@ void SetNodeList(uint2 coords, in uint nodeList)
     temp |= ((nodeList & 0x3F) << 2);
     gCountTexture[coords] = temp;
 #endif // !defined(STREAMING_DEBUG_OPTIONS)
+#endif // !defined(STREAMING_USE_LIST_TEXTURE)
 }
 
 ShadeNodePacked PackShadeNode(in ShadeNode shade)

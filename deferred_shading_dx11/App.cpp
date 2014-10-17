@@ -382,6 +382,12 @@ void App::OnD3D11ResizedSwapChain(ID3D11Device* d3dDevice,
         d3dDevice, mGBufferWidth, mGBufferHeight, DXGI_FORMAT_R32_UINT,
         D3D11_BIND_SHADER_RESOURCE | D3D11_BIND_UNORDERED_ACCESS)));
 
+#if defined(STREAMING_USE_LIST_TEXTURE)
+    mListTexture = (shared_ptr<Texture2D>(new Texture2D(
+        d3dDevice, mGBufferWidth, mGBufferHeight, DXGI_FORMAT_R32_UINT,
+        D3D11_BIND_SHADER_RESOURCE | D3D11_BIND_UNORDERED_ACCESS)));
+#endif // defined(STREAMING_USE_LIST_TEXTURE)
+
 #if defined(STREAMING_DEBUG_OPTIONS)
     mStatsUav = shared_ptr<StructuredBuffer<PixelStats> >(new StructuredBuffer<PixelStats>(
         d3dDevice, mGBufferWidth * mGBufferHeight, D3D11_BIND_UNORDERED_ACCESS | D3D11_BIND_SHADER_RESOURCE));
@@ -981,18 +987,26 @@ void App::RenderGBufferStreaming(ID3D11DeviceContext* d3dDeviceContext,
     d3dDeviceContext->PSSetConstantBuffers(0, 1, &mPerFrameConstants);
     d3dDeviceContext->PSSetSamplers(0, 1, &mDiffuseSampler);
 
+#if defined(STREAMING_USE_LIST_TEXTURE)
+    int uavCount = 3;
+    ID3D11UnorderedAccessView* unorderedAccessViews[3] = {
+        mMergeUav->GetUnorderedAccess(),
+        mCountTexture->GetUnorderedAccess(),
+        mListTexture->GetUnorderedAccess() };
+#else // !defined(STREAMING_USE_LIST_TEXTURE)
 #if defined(STREAMING_DEBUG_OPTIONS)
     int uavCount = 3;
-    ID3D11UnorderedAccessView* unorderedAccessViews[4] = {
+    ID3D11UnorderedAccessView* unorderedAccessViews[3] = {
         mMergeUav->GetUnorderedAccess(),
         mCountTexture->GetUnorderedAccess(),
         mStatsUav->GetUnorderedAccess() };
 #else // !defined(STREAMING_DEBUG_OPTIONS)
     int uavCount = 2;
-    ID3D11UnorderedAccessView* unorderedAccessViews[3] = {
+    ID3D11UnorderedAccessView* unorderedAccessViews[2] = {
         mMergeUav->GetUnorderedAccess(),
         mCountTexture->GetUnorderedAccess() };
 #endif // !defined(STREAMING_DEBUG_OPTIONS)
+#endif // !defined(STREAMING_USE_LIST_TEXTURE)
 
     d3dDeviceContext->OMSetDepthStencilState(mDepthState, 0);
     d3dDeviceContext->OMSetRenderTargetsAndUnorderedAccessViews(1, &mGBufferRTV.at(1), mDepthBufferStreaming->GetDepthStencil(), 3, uavCount, unorderedAccessViews, 0);
@@ -1044,22 +1058,28 @@ void App::ComputeLightingStreaming(ID3D11DeviceContext* d3dDeviceContext,
     d3dDeviceContext->PSSetShaderResources(0, static_cast<UINT>(mGBufferSRV.size()), &mGBufferSRV.front());
     d3dDeviceContext->PSSetShaderResources(5, 1, &lightBufferSRV);
 
+#if defined(STREAMING_USE_LIST_TEXTURE)
+    int uavCount = 3;
+    ID3D11UnorderedAccessView* unorderedAccessViews[3] = {
+        mMergeUav->GetUnorderedAccess(),
+        mCountTexture->GetUnorderedAccess(),
+        mListTexture->GetUnorderedAccess() };
+#else // !defined(STREAMING_USE_LIST_TEXTURE)
 #if defined(STREAMING_DEBUG_OPTIONS)
-    unsigned uavCount = 4;
+    int uavCount = 3;
     ID3D11UnorderedAccessView* unorderedAccessViews[4] = {
-        mLitBufferCS->GetUnorderedAccess(),
         mMergeUav->GetUnorderedAccess(),
         mCountTexture->GetUnorderedAccess(),
         mStatsUav->GetUnorderedAccess() };
 #else // !defined(STREAMING_DEBUG_OPTIONS)
-    unsigned uavCount = 3;
+    int uavCount = 2;
     ID3D11UnorderedAccessView* unorderedAccessViews[3] = {
-        mLitBufferCS->GetUnorderedAccess(),
         mMergeUav->GetUnorderedAccess(),
         mCountTexture->GetUnorderedAccess() };
 #endif // !defined(STREAMING_DEBUG_OPTIONS)
+#endif // !defined(STREAMING_USE_LIST_TEXTURE)
 
-    d3dDeviceContext->OMSetRenderTargetsAndUnorderedAccessViews(1, &backBuffer, 0, 2, uavCount, unorderedAccessViews, 0);
+    d3dDeviceContext->OMSetRenderTargetsAndUnorderedAccessViews(1, &backBuffer, 0, 3, uavCount, unorderedAccessViews, 0);
     d3dDeviceContext->OMSetBlendState(mGeometryBlendState, 0, 0xFFFFFFFF);
 
     // Do pixel frequency shading

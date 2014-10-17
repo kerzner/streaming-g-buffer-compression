@@ -35,6 +35,9 @@ float4 StreamingResolvePS(SkyboxVSOut input) : SV_TARGET
 
     // 2. Clear indexing data (to avoid a clear on the CPU)
     gCountTexture[input.positionViewport.xy] = 0;
+#if defined(STREAMING_USE_LIST_TEXTURE)
+    SetNodeList(input.positionViewport.xy, 0);
+#endif // defined(STREAMING_USE_LIST_TEXTURE)
 
     // For converting from our data structure to Lauritzen's
     GBuffer rawData;

@@ -289,6 +289,10 @@ private:
     std::tr1::shared_ptr<StructuredBuffer<MergeNodePacked> > mMergeUav;    // per-pixel merge data
     std::tr1::shared_ptr<Texture2D> mCountTexture;                         // per-pixel node count
 
+#if defined (STREAMING_USE_LIST_TEXTURE)
+    std::tr1::shared_ptr<Texture2D> mListTexture;                          // per-pixel node list
+#endif // defined (STREAMING_USE_LIST_TEXTURE)
+
 #if defined(STREAMING_DEBUG_OPTIONS)
     std::tr1::shared_ptr<StructuredBuffer<PixelStats> > mStatsUav;         // per-pixel stats
 #endif // defined(STREAMING_DEBUG_OPTIONS)
