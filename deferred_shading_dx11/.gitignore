@@ -1,0 +1,5 @@
+*.opensdf
+*.sdf
+lib/
+temp/
+deferred_shading_2012/
