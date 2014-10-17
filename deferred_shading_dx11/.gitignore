@@ -5,3 +5,5 @@ temp/
 deferred_shading_2012/
 ipch
 *.suo
+*.user
+
